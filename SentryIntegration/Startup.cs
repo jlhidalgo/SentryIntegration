@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SentryIntegration.Interfaces;
+using SentryIntegration.Providers;
 
 namespace SentryIntegration
 {
@@ -28,6 +30,7 @@ namespace SentryIntegration
         {
 
             services.AddControllers();
+            services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SentryIntegration", Version = "v1" });
