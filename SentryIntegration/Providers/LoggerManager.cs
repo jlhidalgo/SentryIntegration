@@ -36,7 +36,30 @@ namespace SentryIntegration.Providers
         }
         public void LogInformation(string message)
         {
-            throw new System.NotImplementedException();
+            _logger.Info(message);
+        }
+
+        public void LogDebug(string message)
+        {
+            _logger.Debug(message);
+                        
+        }
+
+        public void LogWarn(string message)
+        {
+            _logger.Warn(message);
+            
+        }
+
+        public void LogError(string message)
+        {
+            _logger.Error(message);
+            
+        }
+
+        public void LogFatal(string message)
+        {
+            _logger.Fatal(message);
         }
     }
 }
