@@ -1,3 +1,4 @@
+using System;
 using Moq;
 using SentryIntegration.Controllers;
 using SentryIntegration.Interfaces;
@@ -18,6 +19,17 @@ namespace SentryIntegrationTests.Controllers
 
             Assert.Equal("OK", response.Status);
             Assert.False(string.IsNullOrEmpty(response.Version));
+        }
+
+        [Fact]
+        public void ShouldThrowExceptionInPostMethod()
+        {
+            var loggerMock = new Mock<ILoggerManager>();
+            var sut = new StatusController(loggerMock.Object);
+
+            Exception ex = Assert.Throws<NotImplementedException>(() => sut.NotImplemented());
+            Assert.Equal("This method has not been implemented yet", ex.Message);
+        
         }
     }
 }

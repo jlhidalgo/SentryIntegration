@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SentryIntegration.Interfaces;
 using SentryIntegration.Models;
+using System;
 
 namespace SentryIntegration.Controllers 
 {
@@ -16,8 +17,26 @@ namespace SentryIntegration.Controllers
         [HttpGet("/api/v1/status")]
         public StatusResponse Get()
         {
-            _logger.LogInformation("Sending status back");
+            
             return new StatusResponse { Status = "OK", Version = "0.1.0" };
+        }
+        
+        [HttpGet("/api/v1/notimplementedpost")]
+        public StatusResponse NotImplemented()
+        {
+            var response = new StatusResponse();
+            try
+            {
+                _logger.LogError("Generating error for testing sentry");
+                throw new NotImplementedException("This method has not been implemented yet");
+            }
+            catch (NotImplementedException)
+            {
+                throw;
+            }
+            
+            return response;
+
         }
     }
 }

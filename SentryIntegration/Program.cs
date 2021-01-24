@@ -20,7 +20,7 @@ namespace SentryIntegration
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseSentry("https://f56d48b042294fc8b0fd6e327f1325d4@o509988.ingest.sentry.io/5605118");
                 });
     }
 }
